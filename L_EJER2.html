@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+            box-shadow: 5px 5px 5px #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+                + 'contributors',
+            maxZoom: 18
+        });
+        var map = L.map('map', {
+            center: [1.62020, -75.60430],
+            zoom: 13,
+            layers: osm,
+            scrollWheelZoom: true,
+        });
+        L.control.scale().addTo(map);
+
+        //Universidad
+        var marker = L.marker([1.6199768551612792, -75.60360114354155], {
+            draggable: true,
+        }).addTo(map).bindPopup('Universidad de la Amazonia')
+            .openPopup();
+
+
+
+
+        // Alcanldia  
+        var marker = L.marker([1.615094, -75.6138577], {
+            draggable: true,
+        }).addTo(map).bindPopup('Alcaldia')
+            .openPopup();
+
+        //Circulo Alcanldia  
+        var ciruculo = L.circle([1.615094, -75.6138577], 500, {
+            color: "red",
+            fillColor: "#f05",
+            fillOpacity: 0.5
+        }).addTo(map);
+
+        //Plaza santander
+
+        var polygon = L.polygon([
+            [1.61538239, -75.6130408],
+            [1.6151748509, -75.6136885],
+            [1.6145274386, -75.6134901],
+            [1.6147163962, -75.6128456]
+        ]).addTo(map)
+            .bindPopup('Plaza Santander');
+            
+            var puntos = [
+        [1.6100823796947656, -75.61040831839391],
+        [1.6202771424757352, -75.6034938551935],
+        ];
+    
+        var polyline = L.polyline(
+            puntos , { color: 'green' }
+        )
+            .addTo(map)
+            .bindPopup("Mi Casa Juan");
+
+
+
+    </script>
+</body>
+
+</html>
